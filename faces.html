@@ -9,14 +9,14 @@
   body {
     margin:0;
     display:flex;
-    background:#0d1117;
+    background:#051F20;
     color:white;
     font-family:Arial, sans-serif;
     height:100vh;
     overflow:hidden;
   }
 
-  /* LEFT SIDE */
+
   .left {
     flex:1.4;
     display:flex;
@@ -29,7 +29,7 @@
     position:relative;
     width:760px;
     padding:14px;
-    background:#0b0f13;
+    background:#051F20;
     border-radius:12px;
     box-shadow:0 14px 40px rgba(0,0,0,0.6);
   }
@@ -54,33 +54,33 @@
   #status {
     margin-top:10px;
     text-align:center;
-    color:#00e676;
+    color:#E37B3A;
     font-weight:bold;
   }
 
-  /* RIGHT SIDE */
+ 
   .right {
     flex:0.7;
     padding:20px;
-    background:#111418;
+    background:#051F20;
     border-left:2px solid #222;
     display:flex;
     flex-direction:column;
   }
 
   .right h2 {
-    color:#00e676;
+    color:#E37B3A;
     margin-bottom:12px;
   }
 
   #outputFace {
     width:280px;
     border-radius:12px;
-    border:2px solid #00e676;
+    border:2px solid #E37B3A;
     background:black;
   }
 
-  /* HISTORY LIST */
+ 
   #historyList {
     margin-top:20px;
     overflow-y:auto;
@@ -103,7 +103,7 @@
     width:60px;
     height:auto;
     border-radius:6px;
-    border:1px solid #00e676;
+    border:1px solid #E37B3A;
   }
 
   .history-text {
@@ -113,7 +113,7 @@
 
   .emotion-label {
     font-weight:bold;
-    color:#00e676;
+    color:#E37B3A;
   }
 
   .timestamp {
@@ -126,7 +126,7 @@
 
 <body>
 
-<!-- LEFT SIDE -->
+
 <div class="left">
   <div class="stage">
     <video id="video" autoplay muted playsinline></video>
@@ -135,7 +135,7 @@
   </div>
 </div>
 
-<!-- RIGHT SIDE -->
+
 <div class="right">
   <h2>Latest Extracted Face</h2>
   <img id="outputFace" src="">
@@ -187,7 +187,7 @@
     return best.toUpperCase();
   }
 
-  /* HISTORY ENTRY */
+  
   function addHistoryEntry(dataUrl, emotion) {
     const time = new Date();
     const ts = time.toLocaleTimeString("en-US", { hour12:false });
@@ -206,7 +206,7 @@
     historyList.prepend(item);
   }
 
-  /* FACE EXTRACTION */
+ 
   async function extractFace(video, box, emotion) {
     const rect = new faceapi.Rect(box.x, box.y, box.width, box.height);
     const faces = await faceapi.extractFaces(video, [rect]);
@@ -214,14 +214,14 @@
 
     const dataUrl = faces[0].toDataURL();
 
-    // Latest extracted face preview
+  
     outFace.src = dataUrl;
 
-    // Add to history
+    
     addHistoryEntry(dataUrl, emotion);
   }
 
-  /* DETECTION LOOP */
+  
   const options = new faceapi.TinyFaceDetectorOptions({
     inputSize: 320,
     scoreThreshold: 0.5
@@ -249,7 +249,7 @@
       const box = d.detection.box;
       const emotion = getDominantExpression(d.expressions);
 
-      /* DRAW BOX & LANDMARKS */
+      
       ctx.save();
       ctx.setTransform(-1, 0, 0, 1, canvas.width, 0);
       ctx.strokeStyle = "#00ff00";
@@ -257,12 +257,12 @@
       ctx.strokeRect(box.x, box.y, box.width, box.height);
       ctx.restore();
 
-      /* LABEL */
+      
       ctx.fillStyle = "#00c853";
       ctx.font = "26px Arial";
       ctx.fillText(emotion, canvas.width - (box.x + box.width/2), box.y - 10);
 
-      /* EXTRACTION every 1.2 seconds */
+      
       if (time - lastExtract > 1200) {
         lastExtract = time;
         extractFace(video, box, emotion);
@@ -281,3 +281,4 @@
 
 </body>
 </html>
+
