@@ -24,7 +24,7 @@ const barChartOptions = {
   series: [
     {
       data: [120, 340, 210, 80, 15],
-      name: 'Products',
+      name: 'Vehicles',
     },
   ],
   chart: {
@@ -35,7 +35,7 @@ const barChartOptions = {
       show: false,
     },
   },
-  colors: ['#2962ff', '#d50000', '#2e7d32', '#ff6d00', '#583cb3'],
+  colors: ['#E37B3A', '#FAAA1F', '#FFE5B3', '#C1C8A9', '#8CC63F'],
   plotOptions: {
     bar: {
       distributed: true,
@@ -135,15 +135,15 @@ const areaChartOptions = {
   series: [
     {
       name: 'Face Scans',
-      data: [31, 40, 28, 51, 42, 109, 100],
+      data: [160, 200, 309, 289, 509, 620, 100],
     },
     {
       name: 'Vehicle Scans',
-      data: [11, 32, 45, 32, 34, 52, 41],
+      data: [99, 150, 177, 124, 300, 308, 50],
     },
     {
       name: 'Plate Scans',
-      data: [22, 62, 95, 32, 54, 72, 61],
+      data: [99, 150, 177, 124, 300, 308,50],
     },
   ],
   chart: {
@@ -155,7 +155,7 @@ const areaChartOptions = {
       show: false,
     },
   },
-  colors: ['#00ab57', '#d50000', '#1E90FF'],
+  colors: ['#E37B3A', '#FFE5B3', '#8CC63F'],
   labels: ['1', '5', '10', '15', '20', '25', '30'],
   dataLabels: {
     enabled: false,
